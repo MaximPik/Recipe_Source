@@ -1,0 +1,15 @@
+<li class="shopping-list__item" data-id="{{recipe.id}}">
+    <div class="recipe recipe_reverse">
+        {% load thumbnail %}
+        {% thumbnail recipe.image "900x600" crop="center" as im %}
+            <img class="recipe__image recipe__image_big" src="{{ im.url }}" />
+        {% endthumbnail %}
+        <h3 class="recipe__title">{{recipe.title}}</h3>
+        <p class="recipe__text"><span class="icon-time"></span> {{recipe.cooking_time}} мин.</p>
+    </div>
+    <form action="{% url 'remove_from_shop_list' recipe.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="shopping-list__button link">Удалить</button>
+    </form>
+    {% comment %} <a href="{% url 'shop_list' %}" class="shopping-list__button link">Удалить</a> {% endcomment %}
+</li>

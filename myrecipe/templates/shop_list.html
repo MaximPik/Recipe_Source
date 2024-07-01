@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список покупок</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/pages/shopList.css' %}">
+</head>
+<body class="body">
+<header class="header">
+    {% include 'nav_auth.html' with shop_list=True counter=recipes|length%}
+</header>
+<main class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Список покупок</h1>
+    </div>
+    <div class="card-list card-list_column">
+        <ul class="shopping-list">
+            {% for recipe in recipes %}
+                {% include "shop_list_item.html" with recipe=recipe.recipe %}
+            {% endfor %}
+        </ul>
+        <a href="#"><button class="button button_style_blue">Скачать список</button></a>
+    </div>
+</main>
+{% include "footer.html" %}
+<script src="{% static 'js/components/ShopList.js' %}"></script>
+<script src="{% static 'js/config/config.js' %}"></script>
+<script src="{% static 'js/components/Header.js' %}"></script>
+<script src="{% static 'js/api/Api.js' %}"></script>
+<script src="{% static 'js/shopList.js' %}"></script>
+
+</body>
+</html>

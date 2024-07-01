@@ -1,0 +1,10 @@
+<li class="card-user__item">
+    <div class="recipe">
+        {% load thumbnail %}
+        {% thumbnail recipe.image "900x600" crop="center" as im %}
+            <img class="recipe__image" src="{{ im.url }}" />
+        {% endthumbnail %}
+        <h3 class="recipe__title">{{recipe.title}}</h3>
+        <p class="recipe__text"><span class="icon-time"></span>{{recipe.cooking_time}} мин.</p>
+    </div>
+</li>

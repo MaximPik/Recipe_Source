@@ -1,0 +1,29 @@
+{% comment %} <ul class="tags">
+    <li class="tags__item">
+        <a id="Завтрак" class="tags__checkbox tags__checkbox_style_orange tags__checkbox_active"
+        href="{% url 'index' %}?tags={% with tag_list=request.GET.tags|split:',' %}{% for t in tag_list %}{{ t }}{% if not forloop.last %},{% endif %}{% endfor %}{% endwith %}{% if 'Завтрак' not in tag_list %},Завтрак{% endif %}&page={{ request.GET.page|default:1 }}"></a>
+        <span class="tags__label">Завтрак</span>
+    </li>
+    <li class="tags__item">
+        <a id="Обед" class="tags__checkbox tags__checkbox_style_green tags__checkbox_active" 
+        href="{% url 'index' %}?tags={% with tag_list=request.GET.tags.split ',' %}{% for t in tag_list %}{{ t }}{% if not forloop.last %},{% endif %}{% endfor %}{% endwith %}{% if 'Обед' not in tag_list %},Обед{% endif %}&page={{ request.GET.page|default:1 }}"></a>
+        <span for="Обед" class="tags__label">Обед</span>
+    </li>
+    <li class="tags__item">
+        <a id="Ужин" class="tags__checkbox tags__checkbox_style_purple tags__checkbox_active"
+        href="{% url 'index' %}?tags={% with tag_list=request.GET.tags|split:',' %}{% for t in tag_list %}{{ t }}{% if not forloop.last %},{% endif %}{% endfor %}{% endwith %}{% if 'Ужин' not in tag_list %},Ужин{% endif %}&page={{ request.GET.page|default:1 }}"></a>
+        <label for="Ужин" class="tags__label">Ужин</label>
+    </li>
+</ul> {% endcomment %}
+
+
+<ul class="tags">
+    {% for tag in all_tags %}
+        <li class="tags__item">
+            <a id="id_{{tag.name}}" href="{% if tag.name in selected_tags %}?{% for selected_tag in selected_tags %}{% if selected_tag != tag.name %}tags={{ selected_tag }}&{% endif %}{% endfor %}{% else %}?{% for selected_tag in selected_tags %}tags={{ selected_tag }}&{% endfor %}tags={{ tag.name }}{% endif %}"
+               class="tags__checkbox tags__checkbox_style_{{ tag.color }} {% if tag.name in selected_tags %}tags__checkbox_active{% endif %}">
+            </a>
+            <span class="tags__label">{{ tag.name }}</span>
+        </li>
+    {% endfor %}
+</ul>

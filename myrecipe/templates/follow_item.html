@@ -1,0 +1,20 @@
+<div class="card-user" data-author="{{following.id}}">
+    <div class="card-user__header">
+        <h2 class="card-user__title">{{following.author.get_full_name}}</h2>
+    </div>
+    <div class="card-user__body">
+        <ul class="card-user__items">
+            {% for recipe in following.author.recipe_set.all|slice:":3" %}
+                {% include "follow_post_item.html" with recipe=recipe %}
+            {% endfor %}
+            <li class="card-user__item">
+                {% load user_filters %}
+                {% if following.author.recipe_set.all|length > 3 %}
+                    <a href="{% url 'profile' following.author.username %}" class="card-user__link link">Еще {{following.author.recipe_set.all|length|subtract:3}} рецептов...</a>
+                {% else %}
+                    <a href="{% url 'profile' following.author.username %}" class="card-user__link link">Перейти в профиль</a>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+</div>

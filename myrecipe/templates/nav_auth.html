@@ -1,0 +1,16 @@
+<nav class="nav">
+    <div class="nav__container container">
+        <ul class="nav__items list">
+            <li class="nav__item nav__item_{% if index %}active{% else %}disabled{% endif %}"><a href="{% url 'index' %}" class="nav__link link">Рецепты</a></li>
+            <li class="nav__item nav__item_{% if subscriptions %}active{% else %}disabled{% endif %}"><a href="{% url 'my_subscriptions' %}" class="nav__link link">Мои подписки</a></li>
+            <li class="nav__item nav__item_{% if new_recipe %}active{% else %}disabled{% endif %}"><a href="{% url 'new_recipe' %}" class="nav__link link">Создать рецепт</a></li>
+            <li class="nav__item nav__item_{% if favorite %}active{% else %}disabled{% endif %}"><a href="{% url 'favorite' %}" class="nav__link link">Избранное</a></li>
+            <li class="nav__item nav__item_{% if shop_list %}active{% else %}disabled{% endif %}"><a href="{% url 'shop_list' %}" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">{{counter}}</span></li>
+        </ul>
+        <ul class="nav__items list">
+            <li class="nav__item"><a href="/{{user.username}}/" class="nav__link link">{{user.username}}</a></li>
+            <li class="nav__item"><a href="{% url 'password_change' %}" class="nav__link link">Изменить пароль</a></li>
+            <li class="nav__item"><a href="{% url 'logout' %}" class="button button_style_blue">Выход</a></li>
+        </ul> 
+    </div> 
+</nav>
